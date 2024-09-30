@@ -1,0 +1,32 @@
+﻿
+@{
+	ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/css/style4.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="~/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+<!--login-->
+<div class="container">
+	<div class="login">
+		<form action="/DangNhapUser/Login" method="post">
+			<div class="col-md-6 login-do">
+				<div class="login-mail">
+					<input type="text" placeholder="Name" name="Name">
+					<i class="glyphicon glyphicon-envelope"></i>
+				</div>
+				<div class="login-mail">
+					<input type="password" placeholder="Password" name="Pass">
+					<i class="glyphicon glyphicon-lock"></i>
+				</div>
+				<label class="hvr-skew-backward">
+					<input type="submit" value="login">
+				</label>
+				<p>@ViewBag.Error</p>
+			</div>
+		</form>
+	</div>
+</div>
+<!--//login-->

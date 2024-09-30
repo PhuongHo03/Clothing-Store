@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ClotheShop.Models.sanPham>
+@{
+	ClotheShop.Models.onlineTradeEntities1 db = new ClotheShop.Models.onlineTradeEntities1();
+	ViewBag.Title = "Quản Lý Sản Phẩm";
+	Layout = "~/Areas/Admin/Views/Shared/layout.cshtml";
+}
+
+<div>
+	<a href="~/Admin/QuanLySP/Them">Thêm</a>
+	<table>
+		<tr>
+			<th>Mã loại</th>
+			<th>Dành cho</th>
+			<th>Mã sản phẩm</th>
+			<th>Tên sản phẩm</th>
+			<th>Giá bán</th>
+			<th>Đơn vị tiền</th>
+			<th>Số lượng</th>
+			<th>Hình</th>
+		</tr>
+		@foreach (var i in db.sanPhams)
+		{
+			<tr>
+				<td>@i.maLoai</td>
+				<td>@i.danhCho</td>
+				<td>@i.maSP</td>
+				<td>@i.tenSP</td>
+				<td>@i.giaBan</td>
+				<td>@i.dvt</td>
+				<td>@i.soLuong</td>
+				<td style="width:100px"><img style="max-width:100%" src="@i.hinhDD" /></td>
+				<td>
+					<a href="~/Admin/QuanLySP/Sua?maSP=@i.maSP">Sửa</a>
+				</td>
+				<td>
+					<a href="#" onclick=deleteid("@i.maSP")>Xóa</a>
+				</td>
+			</tr>
+		}
+	</table>
+</div>
+<script>
+    var deleteid = (maSP) => {
+        if (confirm("Xóa là mất đó nha") == true) { location.href = "/Admin/QuanLySP/Xoa?maSP=" + maSP }
+    }
+</script>

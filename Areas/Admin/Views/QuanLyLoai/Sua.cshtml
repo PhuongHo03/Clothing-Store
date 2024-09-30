@@ -1,0 +1,23 @@
+﻿@model ClotheShop.Models.loaiSP
+@{
+	ClotheShop.Models.onlineTradeEntities1 db = new ClotheShop.Models.onlineTradeEntities1();
+	ViewBag.Title = "Sửa Loại";
+	Layout = "~/Areas/Admin/Views/Shared/layout.cshtml";
+}
+
+<div style="margin:150px 350px">
+	<form action="/Admin/QuanLyLoai/Sua" method="post">
+		<div class="login-do">
+			<div class="login-mail" style="border:none">
+				<input style="display:none" type="number" name="maLoai" value="@Model.maLoai">
+			</div>
+			<div class="login-mail">
+				<input type="text" placeholder="Tên loại" name="tenLoai" value="@Model.tenLoai">
+			</div>
+			<label class="hvr-skew-backward">
+				<input type="submit">
+			</label>
+			<p>@ViewBag.Error</p>
+		</div>
+	</form>
+</div>

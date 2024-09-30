@@ -1,0 +1,20 @@
+﻿
+@{
+	ViewBag.Title = "About";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner-top">
+	<div class="container">
+		<h2>@Html.ActionLink("Home", "Index", "Home")<label style="color:#f67777">/ About</label></h2>
+	</div>
+</div>
+<!--login-->
+<div class="container">
+	<div class="four">
+		<h3>One Man Army</h3>
+		<p>Easy Peasy Lemon Squeezy</p>
+		<a href="@Url.Action("Index", "Home")" class="hvr-skew-backward">Back To Home</a>
+	</div>
+</div>
+<!--//login-->

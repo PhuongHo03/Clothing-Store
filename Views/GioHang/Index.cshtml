@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ClotheShop.Models.chitietdonhang>
+
+@{
+	ClotheShop.Models.onlineTradeEntities1 db = new ClotheShop.Models.onlineTradeEntities1();
+	var x = (ClotheShop.Models.nguoiDung)HttpContext.Current.Session["user"];
+	ViewBag.title = "Giỏ hàng của " + x.Name;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	int z = 0;
+}
+
+<link rel="stylesheet" href="~/css/giohang.css" />
+
+<div class="container-fluid" style="max-width:1040px;">
+	<div class="cartpm">
+		<div class="cart__title">
+			<p>Giỏ hàng</p>
+		</div>
+		<div class="cart__item-th">
+			<div class="img">
+				<p>Sản phẩm</p>
+			</div>
+			<div class="name">
+				<p>Tên</p>
+			</div>
+			<div class="amount">
+				<p>Số lượng</p>
+			</div>
+			<div class="price">
+				<p>Đơn giá</p>
+			</div>
+			<div class="delete">
+				<p>Xóa</p>
+			</div>
+		</div>
+		<form action="#" method="post">
+			@foreach (var i in Model.Where(c => c.iduser == x.ID).ToList())
+			{
+				<input style="visibility:hidden" name="id" value="@x.ID" />
+				<div class="cart__item-td">
+					<div class="img">
+						<img src="@db.sanPhams.Find(i.idsanpham).hinhDD" alt="">
+					</div>
+					<div class="name">
+						<p>@i.tensanpham</p>
+					</div>
+					<div class="amount">
+						@{z++;}
+						<input type="number" placeholder="1" value="@i.soluong" name="soluong" id="soluong_@z" onchange=textaj("@i.idsanpham",@z)>
+					</div>
+					<div class="price">
+						<p>@db.sanPhams.Find(i.idsanpham).giaBan</p>
+					</div>
+					<div class="delete">
+						<a href="~/Giohang/Xoa/?id=@i.id">&#8709;</a>
+					</div>
+				</div>
+			}
+			<button class="cart__button" type="submit">Đặt hàng</button>
+		</form>
+		<hr />
+		<h3 style="color:red;">NOTE : Quý khách có thể thêm số lượng sản phẩm tại giỏ hàng</h3>
+	</div>
+</div>
+<script>
+	var textaj = (id, z) => {
+		var s = "soluong_" + z
+		var soluong = document.getElementById(s).value;
+		location.href = "/Giohang/Sua?id=" + id + "&soluong=" + soluong
+	}
+</script>
+

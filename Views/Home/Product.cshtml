@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ClotheShop.Models.sanPham>
+@{
+	ViewBag.Title = "Product";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/form.css" rel="stylesheet" type="text/css" media="all" />
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2>@Html.ActionLink("Home", "Index", "Home")<label style="color:#f67777">/ Products</label></h2>
+	</div>
+</div>
+<!--content-->
+<div class="product">
+	<div class="container">
+		<div class="col-md-12">
+			<div class="mid-popular">
+				@foreach(var i in Model) {
+				<div class="col-md-3 item-grid1 simpleCart_shelfItem">
+					<div class=" mid-pop">
+						<div class="pro-img">
+							<img src="@i.hinhDD" class="img-responsive" alt="">
+							<div class="zoom-icon ">
+								<a class="picture b-link-stripe b-animate-go thickbox" href="@i.hinhDD" rel="title"><i class="glyphicon glyphicon-search icon "></i></a>
+								<a href="~/Home/Single?id=@i.maSP"><i class="glyphicon glyphicon-menu-right icon"></i></a>
+							</div>
+						</div>
+						<div class="mid-1">
+							<div class="women">
+								<div class="women-top">
+									<span>@i.danhCho</span>
+									<h6><a href="~/Home/Single?id=@i.maSP">@i.tenSP</a></h6>
+								</div>
+								<div class="img item_add">
+									<a href="#"><img src="~/images/ca.png" alt=""></a>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="mid-2">
+								<p>@i.giaBan<em class="item_price">@i.dvt</em></p>
+								<div class="block">
+									<div class="starbox small ghosting"> </div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				}
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+	<!--products-->
+	<!--//products-->
+</div>
+<!--//content-->

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ClotheShop.Models.loaiSP>
+@{
+	ClotheShop.Models.onlineTradeEntities1 db = new ClotheShop.Models.onlineTradeEntities1();
+	ViewBag.Title = "Quản Lý Loại";
+	Layout = "~/Areas/Admin/Views/Shared/layout.cshtml";
+}
+
+<div>
+	<a href="~/Admin/QuanLyLoai/Them">Thêm</a>
+	<table>
+		<tr>
+			<th>Mã loại</th>
+			<th>Tên loại</th>
+		</tr>
+		@foreach (var i in db.loaiSPs)
+		{
+			<tr>
+				<td>@i.maLoai</td>
+				<td>@i.tenLoai</td>
+				<td>
+					<a href="~/Admin/QuanLyLoai/Sua?maLoai=@i.maLoai">Sửa</a>
+				</td>
+				<td>
+					<a href="#" onclick=deleteid(@i.maLoai)>Xóa</a>
+				</td>
+			</tr>
+		}
+	</table>
+</div>
+<script>
+    var deleteid = (maLoai) => {
+        if (confirm("Xóa là mất đó nha") == true) { location.href = "/Admin/QuanLyLoai/Xoa?maLoai=" + maLoai }
+    }
+</script>

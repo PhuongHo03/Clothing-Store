@@ -1,0 +1,46 @@
+﻿@model ClotheShop.Models.sanPham
+@{
+	ClotheShop.Models.onlineTradeEntities1 db = new ClotheShop.Models.onlineTradeEntities1();
+	ViewBag.Title = "Thêm Sản Phẩm";
+	Layout = "~/Areas/Admin/Views/Shared/layout.cshtml";
+}
+
+<div style="margin:20px 350px">
+	<form action="/Admin/QuanLySP/Them" method="post" enctype="multipart/form-data">
+		<div class="login-do">
+			<select name="danhCho" style="margin-bottom:40px">
+				<option value="women">Women</option>
+				<option value="men">Men</option>
+				<option value="kids">Kids</option>
+			</select>
+			<div class="login-mail">
+				<input type="text" placeholder="Mã sản phẩm" name="maSP">
+			</div>
+			<select name="maLoai" style="margin-bottom:40px">
+				@foreach (var i in db.loaiSPs)
+				{
+					<option value="@i.maLoai">@i.tenLoai</option>
+				}
+			</select>
+			<div class="login-mail">
+				<input type="text" placeholder="Tên sản phẩm" name="tenSP">
+			</div>
+			<div class="login-mail">
+				<input type="number" placeholder="Giá bán" name="giaBan">
+			</div>
+			<div class="login-mail">
+				<input type="text" placeholder="Đơn vị tiền" name="dvt">
+			</div>
+			<div class="login-mail">
+				<input type="number" placeholder="Số lượng" name="soLuong">
+			</div>
+			<div class="login-mail">
+				<input type="file" name="file" />
+			</div>
+			<label class="hvr-skew-backward">
+				<input type="submit">
+			</label>
+			<p>@ViewBag.Error</p>
+		</div>
+	</form>
+</div>
